@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Latent Dirichlet Allocation (LDA) Topic Modeling &#8212; Amy&#39;s Version of the Jupyter Book</title>
+    <title>Exploring Word Frequencies &#8212; Amy&#39;s Version of the Jupyter Book</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="More ways to keep learning" href="book/keep-learning.html" />
+    <link rel="prev" title="Push Changes to the Web" href="book/pushing-to-git.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -146,9 +148,9 @@
   Amy's Notebooks
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="bigrams-frequencies.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Exploring Word Frequencies
   </a>
  </li>
@@ -225,7 +227,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/topic-modeling.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/bigrams-frequencies.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -245,10 +247,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/amykirchhoff/amys-version-of-tdm-notebooks/issues/new?title=Issue%20on%20page%20%2Ftopic-modeling.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/amykirchhoff/amys-version-of-tdm-notebooks/issues/new?title=Issue%20on%20page%20%2Fbigrams-frequencies.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/amykirchhoff/amys-version-of-tdm-notebooks/edit/master/topic-modeling.ipynb"><button
+        <a class="edit-button" href="https://github.com/amykirchhoff/amys-version-of-tdm-notebooks/edit/master/bigrams-frequencies.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -268,7 +270,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://binder.constellate.org/v2/gh/amykirchhoff/amys-version-of-tdm-notebooks/master?urlpath=tree/topic-modeling.ipynb"><button type="button"
+        <a class="binder-button" href="https://binder.constellate.org/v2/gh/amykirchhoff/amys-version-of-tdm-notebooks/master?urlpath=tree/bigrams-frequencies.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -291,11 +293,6 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-topic-modeling">
-   What is Topic Modeling?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#import-your-dataset">
    Import your dataset
   </a>
@@ -306,23 +303,42 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-stopwords-list">
-   Load Stopwords List
+  <a class="reference internal nav-link" href="#extract-unigram-counts-from-the-json-file-no-cleaning">
+   Extract Unigram Counts from the JSON file (No cleaning)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-most-common-unigrams">
+     Find Most Common Unigrams
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-issues-to-consider">
+     Some issues to consider
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#define-a-function-to-process-tokens">
-   Define a Function to Process Tokens
+  <a class="reference internal nav-link" href="#extract-unigram-counts-from-the-json-file-with-cleaning">
+   Extract Unigram Counts from the JSON File (with cleaning)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-stopwords-list">
+     Load Stopwords List
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gather-unigrams-again-with-extra-cleaning-steps">
+     Gather unigrams again with extra cleaning steps
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#display-a-list-of-topics">
-   Display a List of Topics
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualize-the-topic-distances-on-a-flat-plane">
-   Visualize the Topic Distances on a Flat Plane
+  <a class="reference internal nav-link" href="#display-results">
+   Display Results
   </a>
  </li>
 </ul>
@@ -340,58 +356,47 @@
 <p>Created by <a class="reference external" href="http://nkelber.com">Nathan Kelber</a> and Ted Lawless for <a class="reference external" href="https://labs.jstor.org/">JSTOR Labs</a> under <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY License</a><br />
 For questions/comments/improvements, email <a class="reference external" href="mailto:nathan&#46;kelber&#37;&#52;&#48;ithaka&#46;org">nathan<span>&#46;</span>kelber<span>&#64;</span>ithaka<span>&#46;</span>org</a>.<br /></p>
 <hr class="docutils" />
-<div class="section" id="latent-dirichlet-allocation-lda-topic-modeling">
-<h1>Latent Dirichlet Allocation (LDA) Topic Modeling<a class="headerlink" href="#latent-dirichlet-allocation-lda-topic-modeling" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exploring-word-frequencies">
+<h1>Exploring Word Frequencies<a class="headerlink" href="#exploring-word-frequencies" title="Permalink to this headline">¶</a></h1>
 <p><strong>Description:</strong>
-This <a class="reference external" href="https://docs.constellate.org/key-terms/#jupyter-notebook">notebook</a> demonstrates how to do topic modeling. The following processes are described:</p>
+This <a class="reference external" href="https://docs.constellate.org/key-terms/#jupyter-notebook">notebook</a> shows how to find the most common words in a
+<a class="reference external" href="https://docs.constellate.org/key-terms/#dataset">dataset</a>. The following processes are described:</p>
 <ul class="simple">
-<li><p>Using the <code class="docutils literal notranslate"><span class="pre">tdm_client</span></code> to retrieve a dataset</p></li>
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">tdm_client</span></code> to create a Pandas DataFrame</p></li>
 <li><p>Filtering based on a pre-processed ID list</p></li>
 <li><p>Filtering based on a <a class="reference external" href="https://docs.constellate.org/key-terms/#stop-words">stop words list</a></p></li>
-<li><p>Cleaning the tokens in the dataset</p></li>
-<li><p>Creating a <a class="reference external" href="https://docs.constellate.org/key-terms/#gensim-dictionary">gensim dictionary</a></p></li>
-<li><p>Creating a <a class="reference external" href="https://docs.constellate.org/key-terms/#gensim">gensim</a> <a class="reference external" href="https://docs.constellate.org/key-terms/#bag-of-words">bag of words</a> <a class="reference external" href="https://docs.constellate.org/key-terms/#corpus">corpus</a></p></li>
-<li><p>Computing a topic list using <a class="reference external" href="https://docs.constellate.org/key-terms/#gensim">gensim</a></p></li>
-<li><p>Visualizing the topic list with <code class="docutils literal notranslate"><span class="pre">pyldavis</span></code></p></li>
+<li><p>Using a <code class="docutils literal notranslate"><span class="pre">Counter()</span></code> object to get the most common words</p></li>
 </ul>
-<p><strong>Use Case:</strong> For Researchers (Mostly code without explanation, not ideal for learners)</p>
+<p><strong>Use Case:</strong> For Learners (Detailed explanation, not ideal for researchers)</p>
+<p><a class="reference internal" href="exploring-word-frequencies-for-research.html"><span class="doc std std-doc">Take me to the <strong>Research Version</strong> of this notebook -&gt;</span></a></p>
 <p><strong>Difficulty:</strong> Intermediate</p>
-<p><strong>Completion time:</strong> 30 minutes</p>
+<p><strong>Completion time:</strong> 60 minutes</p>
 <p><strong>Knowledge Required:</strong></p>
 <ul class="simple">
-<li><p>Python Basics Series (<a class="reference internal" href="python-basics-1.html"><span class="doc std std-doc">Start Python Basics I</span></a>)</p></li>
+<li><p>Python Basics (<a class="reference internal" href="python-basics-1.html"><span class="doc std std-doc">Start Python Basics I</span></a>)</p></li>
 </ul>
 <p><strong>Knowledge Recommended:</strong></p>
 <ul class="simple">
-<li><p><span class="xref myst">Exploring Metadata</span></p></li>
 <li><p><a class="reference internal" href="working-with-dataset-files.html"><span class="doc std std-doc">Working with Dataset Files</span></a></p></li>
 <li><p><a class="reference internal" href="pandas-1.html"><span class="doc std std-doc">Pandas I</span></a></p></li>
+<li><p><a class="reference internal" href="counter-objects.html"><span class="doc std std-doc">Counter Objects</span></a></p></li>
 <li><p><a class="reference internal" href="creating-stopwords-list.html"><span class="doc std std-doc">Creating a Stopwords List</span></a></p></li>
-<li><p>A familiarity with <a class="reference external" href="https://docs.constellate.org/key-terms/#gensim">gensim</a> is helpful but not required.</p></li>
 </ul>
 <p><strong>Data Format:</strong> <a class="reference external" href="https://docs.constellate.org/key-terms/#jsonl">JSON Lines (.jsonl)</a></p>
 <p><strong>Libraries Used:</strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> to load a preprocessing list</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">csv</span></code> to load a custom stopwords list</p></li>
-<li><p><a class="reference external" href="https://docs.constellate.org/key-terms/#gensim">gensim</a> to accomplish the topic modeling</p></li>
-<li><p><a class="reference external" href="https://docs.constellate.org/key-terms/#nltk">NLTK</a> to create a stopwords list (if no list is supplied)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pyldavis</span></code> to visualize our topic model</p></li>
+<li><p><strong><a class="reference external" href="https://docs.constellate.org/key-terms/#tdm-client">tdm_client</a></strong> to collect, unzip, and read our dataset</p></li>
+<li><p><strong><a class="reference external" href="https://docs.constellate.org/key-terms/#nltk">NLTK</a></strong> to help <a class="reference external" href="https://docs.constellate.org/key-terms/#clean-data">clean</a> up our dataset</p></li>
+<li><p><a class="reference external" href="https://docs.constellate.org/key-terms/#python-counter">Counter</a> from <strong>Collections</strong> to help sum up our word frequencies</p></li>
 </ul>
-<p><strong>Research Pipeline</strong></p>
+<p><strong>Research Pipeline:</strong></p>
 <ol class="simple">
 <li><p>Build a dataset</p></li>
 <li><p>Create a “Pre-Processing CSV” with <a class="reference internal" href="exploring-metadata.html"><span class="doc std std-doc">Exploring Metadata</span></a> (Optional)</p></li>
 <li><p>Create a “Custom Stopwords List” with <a class="reference internal" href="creating-stopwords-list.html"><span class="doc std std-doc">Creating a Stopwords List</span></a> (Optional)</p></li>
-<li><p>Complete the Topic Modeling analysis with this notebook</p></li>
+<li><p>Complete the word frequencies analysis with this notebook</p></li>
 </ol>
 <hr class="docutils" />
-<div class="section" id="what-is-topic-modeling">
-<h2>What is Topic Modeling?<a class="headerlink" href="#what-is-topic-modeling" title="Permalink to this headline">¶</a></h2>
-<p><strong>Topic modeling</strong> is a <strong>machine learning</strong> technique that attempts to discover groupings of words (called topics) that commonly occur together in a body of texts. The body of texts could be anything from journal articles to newspaper articles to tweets.</p>
-<p><strong>Topic modeling</strong> is an unsupervised, clustering technique for text. We give the machine a series of texts that it then attempts to cluster the texts into a given number of topics. There is also a <em>supervised</em>, clustering technique called <strong>Topic Classification</strong>, where we supply the machine with examples of pre-labeled topics and then see if the machine can identify them given the examples.</p>
-<p><strong>Topic modeling</strong> is usually considered an exploratory technique; it helps us discover new patterns within a set of texts. <strong>Topic Classification</strong>, using labeled data, is intended to be a predictive technique; we want it to find more things like the examples we give it.</p>
-</div>
 <div class="section" id="import-your-dataset">
 <h2>Import your dataset<a class="headerlink" href="#import-your-dataset" title="Permalink to this headline">¶</a></h2>
 <p>We’ll use the tdm_client library to automatically retrieve the dataset in the JSON file format.</p>
@@ -405,14 +410,8 @@ This <a class="reference external" href="https://docs.constellate.org/key-terms/
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating a variable `dataset_id` to hold our dataset ID</span>
-<span class="c1"># The default dataset is Independent Voices</span>
-<span class="c1"># Independent Voices is an open access digital collection of alternative press newspapers, magazines and journals,</span>
-<span class="c1"># drawn from the special collections of participating libraries. These periodicals were produced by feminists, </span>
-<span class="c1"># dissident GIs, campus radicals, Native Americans, anti-war activists, Black Power advocates, Hispanics, </span>
-<span class="c1"># LGBT activists, the extreme right-wing press and alternative literary magazines </span>
-<span class="c1"># during the latter half of the 20th century.</span>
-
-<span class="n">dataset_id</span> <span class="o">=</span> <span class="s2">&quot;ac017df6-06b0-d415-7235-98fb729dac4e&quot;</span>
+<span class="c1"># The default dataset is Shakespeare Quarterly, 1950-present</span>
+<span class="n">dataset_id</span> <span class="o">=</span> <span class="s2">&quot;7e41317e-740f-e86a-4729-20dab492e925&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -424,6 +423,9 @@ This <a class="reference external" href="https://docs.constellate.org/key-terms/
 <span class="kn">import</span> <span class="nn">tdm_client</span>
 <span class="c1"># Pull in the dataset that matches `dataset_id`</span>
 <span class="c1"># in the form of a gzipped JSON lines file.</span>
+<span class="c1"># The .get_dataset() method downloads the gzipped JSONL file</span>
+<span class="c1"># to the /data folder and returns a string for the file name and location</span>
+<span class="c1"># dataset_metadata will be a string containing that file name and location</span>
 <span class="n">dataset_file</span> <span class="o">=</span> <span class="n">tdm_client</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -432,7 +434,7 @@ This <a class="reference external" href="https://docs.constellate.org/key-terms/
 </div>
 <div class="section" id="apply-pre-processing-filters-if-available">
 <h2>Apply Pre-Processing Filters (if available)<a class="headerlink" href="#apply-pre-processing-filters-if-available" title="Permalink to this headline">¶</a></h2>
-<p>If you completed pre-processing with the “Exploring Metadata and Pre-processing” notebook, you can use your CSV file of dataset IDs to automatically filter the dataset. Your pre-processed CSV file  must be in the root folder.</p>
+<p>If you completed pre-processing with the “Exploring Metadata and Pre-processing” notebook, you can use your CSV file of dataset IDs to automatically filter the dataset. Your pre-processed CSV file should be in the /data directory.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a pre-processed CSV file of filtered dataset IDs.</span>
@@ -441,13 +443,16 @@ This <a class="reference external" href="https://docs.constellate.org/key-terms/
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
+<span class="c1"># Define a string that describes the path to the CSV</span>
 <span class="n">pre_processed_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;data/pre-processed_</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s1">.csv&#39;</span>
 
+<span class="c1"># Test if the path to the CSV exists</span>
+<span class="c1"># If true, then read the IDs into filtered_id_list</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">pre_processed_file_name</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">pre_processed_file_name</span><span class="p">)</span>
     <span class="n">filtered_id_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="n">use_filtered_list</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pre-Processed CSV found. Successfully read in &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; documents.&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pre-Processed CSV found. Filtered dataset is &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; documents.&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span> 
     <span class="n">use_filtered_list</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No pre-processed CSV file found. Full dataset will be used.&#39;</span><span class="p">)</span>
@@ -456,13 +461,89 @@ This <a class="reference external" href="https://docs.constellate.org/key-terms/
 </div>
 </div>
 </div>
+<div class="section" id="extract-unigram-counts-from-the-json-file-no-cleaning">
+<h2>Extract Unigram Counts from the JSON file (No cleaning)<a class="headerlink" href="#extract-unigram-counts-from-the-json-file-no-cleaning" title="Permalink to this headline">¶</a></h2>
+<p>We pulled in our dataset using a <code class="docutils literal notranslate"><span class="pre">dataset_id</span></code>. The file, which resides in the datasets/ folder, is a compressed JSON Lines file (jsonl.gz) that contains all the metadata information found in the metadata CSV <em>plus</em> the textual data necessary for analysis including:</p>
+<ul class="simple">
+<li><p>Unigram Counts</p></li>
+<li><p>Bigram Counts</p></li>
+<li><p>Trigram Counts</p></li>
+<li><p>Full-text (if available)</p></li>
+</ul>
+<p>To complete our analysis, we are going to pull out the unigram counts for each document and store them in a Counter() object. We will import <code class="docutils literal notranslate"><span class="pre">Counter</span></code> which will allow us to use Counter() objects for counting unigrams. Then we will initialize an empty Counter() object <code class="docutils literal notranslate"><span class="pre">word_frequency</span></code> to hold all of our unigram counts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Counter()</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="c1"># Create an empty Counter object called `word_frequency`</span>
+<span class="n">word_frequency</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can read in each document using the tdm_client.dataset_reader.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gather unigramCounts from documents in `filtered_id_list` if it is available</span>
+
+<span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">tdm_client</span><span class="o">.</span><span class="n">dataset_reader</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">use_filtered_list</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">document_id</span> <span class="o">=</span> <span class="n">document</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="c1"># Skip documents not in our filtered_id_list</span>
+        <span class="k">if</span> <span class="n">document_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">filtered_id_list</span><span class="p">:</span>
+            <span class="k">continue</span>
+    <span class="n">unigrams</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;unigramCount&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">for</span> <span class="n">gram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">unigrams</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">word_frequency</span><span class="p">[</span><span class="n">gram</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span>
+
+<span class="c1"># Print success message</span>
+<span class="k">if</span> <span class="n">use_filtered_list</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unigrams have been collected only for the &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; documents listed in your CSV file.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unigrams have been collected for all documents without filtering from a CSV file.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="find-most-common-unigrams">
+<h3>Find Most Common Unigrams<a class="headerlink" href="#find-most-common-unigrams" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have a list of the frequency of all the unigrams in our corpus, we need to sort them to find which are most common</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">gram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">word_frequency</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gram</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="some-issues-to-consider">
+<h3>Some issues to consider<a class="headerlink" href="#some-issues-to-consider" title="Permalink to this headline">¶</a></h3>
+<p>We have successfully created a word frequency list. There are a couple small issues, however, that we still need to address:</p>
+<ol class="simple">
+<li><p>There are many <a class="reference external" href="https://docs.constellate.org/key-terms/#function-words">function words</a>, words like “the”, “in”, and “of” that are grammatically important but do not carry as much semantic meaning like <a class="reference external" href="https://docs.constellate.org/key-terms/#content-words">content words</a>, such as nouns and verbs.</p></li>
+<li><p>The words represented here are actually case-sensitive <a class="reference external" href="https://docs.constellate.org/key-terms/#string">strings</a>. That means that the string “the” is a different from the string “The”. You may notice this in your results above.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="extract-unigram-counts-from-the-json-file-with-cleaning">
+<h2>Extract Unigram Counts from the JSON File (with cleaning)<a class="headerlink" href="#extract-unigram-counts-from-the-json-file-with-cleaning" title="Permalink to this headline">¶</a></h2>
+<p>To address these issues, we need to find a way to remove common <a class="reference external" href="https://docs.constellate.org/key-terms/#function-words">function words</a> and combine <a class="reference external" href="https://docs.constellate.org/key-terms/#string">strings</a> that may have capital letters in them. We can address these issues by:</p>
+<ol class="simple">
+<li><p>Using a <a class="reference external" href="https://docs.constellate.org/key-terms/#stop-words">stopwords</a> list to remove common <a class="reference external" href="https://docs.constellate.org/key-terms/#function-words">function words</a></p></li>
+<li><p>Lowercasing all the characters in each string to combine our counts</p></li>
+</ol>
 <div class="section" id="load-stopwords-list">
-<h2>Load Stopwords List<a class="headerlink" href="#load-stopwords-list" title="Permalink to this headline">¶</a></h2>
+<h3>Load Stopwords List<a class="headerlink" href="#load-stopwords-list" title="Permalink to this headline">¶</a></h3>
 <p>If you have created a stopword list in the stopwords notebook, we will import it here. (You can always modify the CSV file to add or subtract words then reload the list.) Otherwise, we’ll load the NLTK <a class="reference external" href="https://docs.constellate.org/key-terms/#stop-words">stopwords</a> list automatically.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a custom data/stop_words.csv if available</span>
 <span class="c1"># Otherwise, load the nltk stopwords list in English</span>
+
+<span class="c1"># Create an empty Python list to hold the stopwords</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># The filename of the custom data/stop_words.csv file</span>
 <span class="n">stopwords_list_filename</span> <span class="o">=</span> <span class="s1">&#39;data/stop_words.csv&#39;</span>
@@ -482,120 +563,44 @@ This <a class="reference external" href="https://docs.constellate.org/key-terms/
 </div>
 </div>
 </div>
-<div class="section" id="define-a-function-to-process-tokens">
-<h2>Define a Function to Process Tokens<a class="headerlink" href="#define-a-function-to-process-tokens" title="Permalink to this headline">¶</a></h2>
-<p>Next, we create a short function to clean up our tokens.</p>
+<div class="section" id="gather-unigrams-again-with-extra-cleaning-steps">
+<h3>Gather unigrams again with extra cleaning steps<a class="headerlink" href="#gather-unigrams-again-with-extra-cleaning-steps" title="Permalink to this headline">¶</a></h3>
+<p>In addition to using a stopwords list, we will clean up the tokens by lowercasing all tokens and combining them. This will combine tokens with different capitalization such as “quarterly” and “Quarterly.” We will also remove any tokens that are not alphanumeric.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_token</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
-    <span class="n">token</span> <span class="o">=</span> <span class="n">token</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
-        <span class="k">return</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="k">return</span>
-    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()):</span>
-        <span class="k">return</span>
-    <span class="k">return</span> <span class="n">token</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Limit to n documents. Set to None to use all documents.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gather unigramCounts from documents in `filtered_id_list` if available</span>
+<span class="c1"># and apply the processing.</span>
 
-<span class="n">limit</span> <span class="o">=</span> <span class="mi">1500</span>
+<span class="n">word_frequency</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
 
-<span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">documents</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">tdm_client</span><span class="o">.</span><span class="n">dataset_reader</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">):</span>
-    <span class="n">processed_document</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">document_id</span> <span class="o">=</span> <span class="n">document</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">use_filtered_list</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">document_id</span> <span class="o">=</span> <span class="n">document</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
         <span class="c1"># Skip documents not in our filtered_id_list</span>
         <span class="k">if</span> <span class="n">document_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">filtered_id_list</span><span class="p">:</span>
             <span class="k">continue</span>
-    <span class="n">unigrams</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;unigramCount&quot;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">unigrams</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;unigramCount&quot;</span><span class="p">,</span> <span class="p">[])</span>
     <span class="k">for</span> <span class="n">gram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">unigrams</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">clean_gram</span> <span class="o">=</span> <span class="n">process_token</span><span class="p">(</span><span class="n">gram</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">clean_gram</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">clean_gram</span> <span class="o">=</span> <span class="n">gram</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">clean_gram</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
             <span class="k">continue</span>
-        <span class="n">processed_document</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clean_gram</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">processed_document</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">documents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">processed_document</span><span class="p">)</span>
-    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">):</span>
-       <span class="k">break</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Build a gensim dictionary corpus and then train the model. More information about parameters can be found at the <a class="reference external" href="https://radimrehurek.com/gensim/models/ldamodel.html">Gensim LDA Model page</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gensim</span>
-<span class="n">dictionary</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">corpora</span><span class="o">.</span><span class="n">Dictionary</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">doc_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
-<span class="n">num_topics</span> <span class="o">=</span> <span class="mi">7</span> <span class="c1"># Change the number of topics</span>
-<span class="n">passes</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># The number of passes the model runs</span>
-<span class="c1"># Remove terms that appear in less than 10 documents and terms that occur in more than 50% of documents.</span>
-<span class="n">dictionary</span><span class="o">.</span><span class="n">filter_extremes</span><span class="p">(</span><span class="n">no_below</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">no_above</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bow_corpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">dictionary</span><span class="o">.</span><span class="n">doc2bow</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train the LDA model</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">LdaModel</span><span class="p">(</span>
-    <span class="n">corpus</span><span class="o">=</span><span class="n">bow_corpus</span><span class="p">,</span>
-    <span class="n">id2word</span><span class="o">=</span><span class="n">dictionary</span><span class="p">,</span>
-    <span class="n">num_topics</span><span class="o">=</span><span class="n">num_topics</span><span class="p">,</span>
-    <span class="n">passes</span><span class="o">=</span><span class="n">passes</span>
-<span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">clean_gram</span><span class="o">.</span><span class="n">isalpha</span><span class="p">():</span>
+            <span class="k">continue</span>
+        <span class="n">word_frequency</span><span class="p">[</span><span class="n">clean_gram</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="display-a-list-of-topics">
-<h2>Display a List of Topics<a class="headerlink" href="#display-a-list-of-topics" title="Permalink to this headline">¶</a></h2>
-<p>Print the most significant terms, as determined by the model, for each topic.</p>
+</div>
+<div class="section" id="display-results">
+<h2>Display Results<a class="headerlink" href="#display-results" title="Permalink to this headline">¶</a></h2>
+<p>Finally, we will display the 20 most common words by using the <code class="docutils literal notranslate"><span class="pre">.most_common()</span></code> method on the <code class="docutils literal notranslate"><span class="pre">Counter()</span></code> object.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">topic_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_topics</span><span class="p">):</span>
-    <span class="n">word_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_topic_terms</span><span class="p">(</span><span class="n">topic_num</span><span class="p">)</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">wid</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">word_ids</span><span class="p">:</span>
-        <span class="n">word</span> <span class="o">=</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">id2token</span><span class="p">[</span><span class="n">wid</span><span class="p">]</span>
-        <span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Topic </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">topic_num</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="visualize-the-topic-distances-on-a-flat-plane">
-<h2>Visualize the Topic Distances on a Flat Plane<a class="headerlink" href="#visualize-the-topic-distances-on-a-flat-plane" title="Permalink to this headline">¶</a></h2>
-<p>Visualize the model using <a class="reference external" href="https://pyldavis.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">pyLDAvis</span></code></a>. This visualization can take a while to generate depending on the size of your dataset.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyLDAvis.gensim</span>
-<span class="n">pyLDAvis</span><span class="o">.</span><span class="n">enable_notebook</span><span class="p">()</span>
-<span class="n">pyLDAvis</span><span class="o">.</span><span class="n">gensim</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">bow_corpus</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the most common processed unigrams and their counts</span>
+<span class="k">for</span> <span class="n">gram</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">word_frequency</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gram</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">count</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -628,6 +633,8 @@ This <a class="reference external" href="https://docs.constellate.org/key-terms/
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="book/pushing-to-git.html" title="previous page">Push Changes to the Web</a>
+    <a class='right-next' id="next-link" href="book/keep-learning.html" title="next page">More ways to keep learning</a>
 
         </div>
         
