@@ -1,6 +1,8 @@
 # Make local changes
 Now that you have a local copy of your site, you can make changes and improve it. You can use two different kinds of editors to make improvements. For improvements to the website configuration, you can use a simple text editor. For improvements to the lessons, we will use *The Jupyter Notebook*.
 
+Amy is making he rown changes, let's see what happens.  Hmm, line breaks are important.  That's good to know.
+
 ## Making improvements to the website configuration
 
 The [full documentation for Jupyter Book](https://jupyterbook.org/intro.html) contains many more details, but we will focus on two main files:
@@ -84,3 +86,7 @@ When you are happy with your website changes, you can push them to GitHub to mak
 
 
 
+
+```python
+
+```
