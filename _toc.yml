@@ -28,7 +28,7 @@
 - part: Amy's Notebooks
   chapters:
   - file: bigrams-frequencies.ipynb
-    tile: Amy Bigrams
+    title: Amy Bigrams
 
 - part: Reference
   chapters:
