@@ -1,9 +1,7 @@
-
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-- file: book/intro
-
-- part: The Course
+format: jb-book
+root: book/intro
+parts:
+- caption: The Course
   chapters:
   - file: book/schedule
     title: Course Schedule
@@ -11,8 +9,7 @@
     title: Course Syllabus
   - file: book/all-notebooks
     title: All Teaching Notebooks
-    
-- part: Create your own Teaching Website
+- caption: Create your own Teaching Website
   chapters:
   - file: book/create-your-own
     title: Create your own Jupyter Book
@@ -24,21 +21,19 @@
     title: Make local changes
   - file: book/pushing-to-git
     title: Push changes to the web
-
-- part: Amy's Notebooks
+- caption: Amy's Notebooks
   chapters:
   - file: bigrams-frequencies.ipynb
     title: Amy Bigrams
-
-- part: Reference
+- caption: Reference
   chapters:
-    - url: https://constellate.org
-      title: Constellate Platform
-    - url: https://docs.constellate.org/
-      title: Constellate Documentation
-    - url: https://docs.constellate.org/key-terms/
-      title: Text Analysis Glossary
-    - url: https://jupyterbook.org/intro.html
-      title: Jupyter Book Documentation
-    - file: book/keep-learning
-      title: More ways to keep learning
+  - url: https://constellate.org
+    title: Constellate Platform
+  - url: https://docs.constellate.org/
+    title: Constellate Documentation
+  - url: https://docs.constellate.org/key-terms/
+    title: Text Analysis Glossary
+  - url: https://jupyterbook.org/intro.html
+    title: Jupyter Book Documentation
+  - file: book/keep-learning
+    title: More ways to keep learning
